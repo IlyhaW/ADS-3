@@ -14,7 +14,7 @@ int cbinsearch(int *arr, int size, int value) {
         if (arr[median] == value) {
             int lShift = median - 1;
             while (arr[lShift] == value && lShift >= 0) {
-                count += 1;
+                count = count + 1;
                 lShift -= 1;
             }
             int rShift = median + 1;
