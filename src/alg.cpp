@@ -2,7 +2,7 @@
 
 int cbinsearch(int* arr, int size, int value) {
     int leftBoard = 0;
-    int rightoard = size - 1;
+    int rightBoard = size - 1;
     int result = 0;
     while (leftBoard <= rightBoard) {
         int median = (rightBoard + leftBoard) / 2;
