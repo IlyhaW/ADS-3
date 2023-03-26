@@ -1,29 +1,28 @@
 // Copyright 2021 NNTU-CS
 
-int cbinsearch(int *arr, int size, int value) {
-    int lBorder = 0;
-    int rBorder = size;
-    int median;
-    int count = 1;
-    while (lBorder < rBorder) {
-        median = (lBorder + rBorder) / 2;
-        if (arr[median] < value)
-            lBorder = median;
-        if (arr[median] > value)
-            rBorder = median + 1;
-        if (arr[median] == value) {
-            int lShift = median - 1;
-            while (arr[lShift] == value && lShift >= 0) {
-                count = count + 1;
-                lShift -= 1;
+int cbinsearch(int* arr, int size, int value) {
+    int leftBoard = 0;
+    int rightoard = size - 1;
+    int result = 0;
+    while (leftBoard <= rightBoard) {
+        int median = (rightBoard + leftBoard) / 2;
+        if (*(arr + median) == value) {
+            result++;
+            int newMedian = median;
+            while ((*(arr + median + 1)) == value) {
+                result++;
+                median++;
             }
-            int rShift = median + 1;
-            while (arr[rShift] == value && rShift <= rBorder) {
-                count += 1;
-                rShift += 1;
+            while ((*(arr + newMedian - 1)) == value) {
+                result++;
+                newMedian--;
             }
-            return count;
+            return result;
+        } else if (*(arr + median) > value) {
+            rightBoard = median - 1;
+        } else {
+            leftBoard = median + 1;
         }
     }
-    return 0;
+    return result;
 }
